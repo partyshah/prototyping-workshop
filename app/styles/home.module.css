@@ -1,50 +1,193 @@
 .container {
-  max-width: var(--max-width);
-  margin: 0 auto;
+  background: linear-gradient(
+    125deg,
+    #FF9933,  /* Saffron */
+    #541690,  /* Royal Purple */
+    #FF1E1E,  /* Sindoor Red */
+    #138808,  /* India Green */
+    #FF00FF,  /* Y2K Pink */
+    #FFD700,  /* Golden */
+    #541690   /* Royal Purple */
+  );
+  background-size: 400% 400%;
+  animation: gradientShift 15s ease infinite;
+  min-height: 100vh;
   padding: 2rem;
+  color: #fff;
+  position: relative;
+}
+
+.container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    repeating-conic-gradient(from 0deg at 50% 50%, 
+      transparent 0deg 30deg,
+      rgba(255, 153, 51, 0.1) 30deg 60deg,
+      transparent 60deg 90deg,
+      rgba(255, 0, 255, 0.1) 90deg 120deg,
+      transparent 120deg 150deg,
+      rgba(255, 215, 0, 0.1) 150deg 180deg,
+      transparent 180deg 210deg,
+      rgba(19, 136, 8, 0.1) 210deg 240deg,
+      transparent 240deg 270deg,
+      rgba(255, 30, 30, 0.1) 270deg 300deg,
+      transparent 300deg 330deg,
+      rgba(84, 22, 144, 0.1) 330deg 360deg
+    );
+  background-size: 100px 100px;
+  opacity: 0.3;
+  animation: meshEffect 20s linear infinite;
+  pointer-events: none;
 }
 
 .header {
-  margin-bottom: 2rem;
+  text-align: center;
+  margin-bottom: 3rem;
+  background: linear-gradient(90deg, #FF9933, #FFD700, #FF00FF);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0 0 10px rgba(255, 153, 51, 0.5);
+  position: relative;
+}
+
+.header::before,
+.header::after {
+  content: '🕉️';
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 2rem;
+  opacity: 0.8;
+  text-shadow: none;
+}
+
+.header::before {
+  left: 20px;
+}
+
+.header::after {
+  right: 20px;
 }
 
 .header h1 {
-  font-size: 2.5rem;
-  font-weight: 700;
+  font-size: 3.5rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin: 0;
+  padding: 1rem;
+  animation: glow 2s ease-in-out infinite alternate;
 }
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 2rem;
-  margin-top: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+  padding: 1rem;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .card {
-  padding: 1.5rem;
-  border-radius: var(--border-radius);
-  background: rgba(0, 0, 0, 0.02);
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  transition: all 0.2s ease;
+  background: rgba(0, 0, 0, 0.4);
+  border: 2px solid #FF9933;
+  border-radius: 12px;
+  padding: 1.25rem;
   text-decoration: none;
-  color: inherit;
-  cursor: pointer;
-  display: block;
+  color: white;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 0 15px rgba(255, 153, 51, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg,
+    transparent 48%,
+    rgba(255, 153, 51, 0.05) 49%,
+    rgba(255, 153, 51, 0.05) 51%,
+    transparent 52%
+  );
+  background-size: 20px 20px;
+  pointer-events: none;
 }
 
 .card:hover {
-  background: rgba(0, 0, 0, 0.04);
-  transform: translateY(-2px);
+  transform: translateY(-5px);
+  background: rgba(0, 0, 0, 0.5);
+  border-color: #FFD700;
+  box-shadow: 
+    0 0 20px rgba(255, 153, 51, 0.5),
+    0 0 30px rgba(255, 215, 0, 0.3);
 }
 
 .card h3 {
-  margin-bottom: 0.5rem;
   font-size: 1.25rem;
-  font-weight: 600;
+  margin: 0 0 0.75rem 0;
+  background: linear-gradient(90deg, #FFD700, #FFA500);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
 }
 
 .card p {
+  margin: 0;
+  color: #ffffff;
   font-size: 0.9rem;
-  opacity: 0.8;
-  line-height: 1.6;
+  line-height: 1.4;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+@keyframes glow {
+  from {
+    text-shadow: 0 0 10px #FF9933, 0 0 20px #FF9933, 0 0 30px #FF9933;
+  }
+  to {
+    text-shadow: 0 0 20px #FFD700, 0 0 30px #FFD700, 0 0 40px #FFD700;
+  }
+}
+
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes meshEffect {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@media (max-width: 768px) {
+  .header h1 {
+    font-size: 2.5rem;
+  }
+  
+  .grid {
+    grid-template-columns: 1fr;
+  }
 } 
