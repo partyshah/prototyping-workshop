@@ -112,6 +112,11 @@ export default function Home() {
   // Add your prototypes to this array
   const prototypes = [
     {
+      title: 'Victorian Piano',
+      description: 'A playable piano with Victorian-era styling and realistic sound.',
+      path: '/prototypes/victorian-piano'
+    },
+    {
       title: 'Example Prototype',
       description: 'Create your first prototype by adding a new page in the prototypes folder.',
       path: '/prototypes/example'
